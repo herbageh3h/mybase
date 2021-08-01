@@ -7,12 +7,12 @@ mvn -B archetype:generate -DgroupId=com.wearehw3a.app -DartifactId=my-app -Darch
 mvn clean package
 mvn compile
 mvn test
-mvn package -Pdist -Dmaven.test.skip=true -am
+mvn package -Pdist '-Dmaven.test.skip=true' -am
 mvn dependency:tree
 mvn site:site
 ```
 ## FAQ
-#### 1. Build cycle?
+#### 1. What are included in build cycle?
 - validate
 - generate-sources
 - process-sources
@@ -20,7 +20,7 @@ mvn site:site
 - process-resources
 - compile
 
-#### 2. Phases?
+#### 2. How many phases are included?
 - validate
 - compile
 - test
