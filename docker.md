@@ -2,29 +2,45 @@
 
 ```
 docker version
-docker image ls
-docker container ls
+docker pull nginx
+docker images
 docker ps
+docker container ls
+docker stop <container_id|container_name>
+docker start <container_id|container_name>
 docker log mysql
 docker exec -it mysql bash
+docker build -t hw3aweb:latest .
 ```
 
 ```
-docker run -d -p 80:80 docker/getting-started
+docker run -d -p 80:80 nginx:latest => host port : container port
 ```
 
 # Roadmap
 
 1. image
 2. container
+3. volume
+4. docker file
 
 # FAQ
+
+### How to name a container?
+
+```
+docker run -d -p 80:80 --name webserver nginx:latest
+```
 
 ### How to install on Mac?
 
 ```
 brew install --cask docker
 ```
+
+### How to install on DigitalOcean?
+
+<https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04>
 
 ### How to install and run mysql container?
 
@@ -49,10 +65,12 @@ docker kill $(docker ps -aq); docker rm $(docker ps -aq)
 
 ^P ^Q => hotkey to detach
 
-### How to install?
+### How to install on centos?
 
+```
 yum -y install docker-ce
 brew cask install docker
+```
 For centos: https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce-1
 
 ### How to start?
@@ -81,16 +99,22 @@ docker run -dit redis => -d means run in background
 docker run -it --rm opensuse bash
 docker run -it --rm --net="host" -v `pwd`:/src redis
 docker run -it --rm --link myredis:redis redis redis-cli -h redis -p 6379
+docker run -d -p 8080:80 -p 80:80 nginx:latest
 ```
 
 ### How to list all images?
 
-sudo docker image ls
+```
+docker images
+docker image ls
+```
 
 ### How to list all containers?
 
-sudo docker container ls
+```
+docker container ls
 docker container ls -a
+```
 
 ### How to check container logs?
 
@@ -114,8 +138,12 @@ docker load => load image from local file
 
 ### How to delete a container?
 
-docker container rm myredis
+```
+docker rm <container_id|container_name>
+docker rm $(docker ps -aq)
 docker container prune
+docker rm -f <container_id|container_name> :: -f means force.
+```
 
 ### How to search?
 
@@ -123,16 +151,20 @@ docker search centos
 
 ### How to share data between container and host?
 
-through volume
+use volume
+```
 docker run --name centos -it -v /home/herb/share:/root/share centos
 docker run -v /home/herb:/mnt -it spacevim bash
+docker run -d -p 80:80 --name webserver -v /home/jeff/nginx/profile:/usr/share/nginx/html nginx:latest
+docker run --volumes-from <webserver:container_name> nginx => New container mount volume of webserver.
+```
 
-### How to operate on volumes?
-
+```
 docker volume ls
 docker volume create myvol
 docker volume inspect myvol
 docker volume rm myvol
+```
 
 ### How to copy file?
 
@@ -140,7 +172,9 @@ docker cp mynginx:/etc/nginx/nginx.conf /home/herb/data/nginx.conf
 
 ### How to build?
 
-docker build -t hello-world .
+```
+docker build -t hw3aweb:latest .
+```
 
 ### How to add aliyun accelerator?
 
@@ -152,6 +186,35 @@ if you can't restart docker after adding the registry mirror, make sure to unche
 sudo groupadd docker
 sudo usermod -aG docker huanghao
 sudo chown root:docker /var/run/docker.sock
+
+### How to use docker ps command?
+
+```
+docker ps
+docker ps -a
+```
+
+### How to use dockerfile?
+
+Dockerfile is inside your project root directory.
+
+Use `docker build` to build image using Dockerfile.
+```
+FROM php:7.0-apache
+ARG http_port=8080
+USER jenkins
+COPY src/ /var/www/html
+EXPOSE 80 443
+WORKDIR /app  => set /app as current directory, used in the following RUN, COPY, ADD, etc.
+VOLUME ["/var/www", "/var/log/apache2", "etc/apache2"]
+RUN cd /app; npm install
+CMD ["node", "app.js"] => default execution scripts
+```
+
+```
+FROM nginx:latest
+ADD . /usr/share/nginx/html
+```
 
 # Docker command examples
 
@@ -192,20 +255,6 @@ docker network ls
 docker network prune
 docker cp nginx:/etc/nginx/nginx.conf /data/app/nginx/
 docker search prometheus
-```
-
-# Dockerfile examples
-
-```
-FROM php:7.0-apache
-ARG http_port=8080
-USER jenkins
-COPY src/ /var/www/html
-EXPOSE 80 443
-WORKDIR /app  => set /app as current directory, used in the following RUN, COPY, ADD, etc.
-VOLUME ["/var/www", "/var/log/apache2", "etc/apache2"]
-RUN cd /app; npm install
-CMD ["node", "app.js"] => default execution scripts
 ```
 
 # Options
