@@ -1043,10 +1043,12 @@ setlocal nowrap
 
 ### noremap
 
+```
 noremap q: :q
 inoremap jk <Esc>
 nnoremap <M-j> mz:m+<CR>`z
 nnoremap <buffer> <Leader>x dd
+```
 
 ### iabbrev
 
@@ -1114,7 +1116,7 @@ https://dougblack.io/words/a-good-vimrc.html
 
 # Resource
 
-Vim Awesome https://vimawesome.com
++ [Vim Awesome](https://vimawesome.com)
 
 
 # Neovim
