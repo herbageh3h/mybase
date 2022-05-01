@@ -13,6 +13,11 @@ docker exec -it mysql bash
 docker run -d -p 80:80 docker/getting-started
 ```
 
+# Roadmap
+
+1. image
+2. container
+
 # FAQ
 
 ### How to install on Mac?
@@ -68,6 +73,7 @@ docker version
 
 ### How to run?
 
+```
 docker run -d --name myblog -p 8000:80 --link mydb:mysql wordpress
 docker run --name mydb -e MYSQL_ROOT_PASSWORD=root -d mysql
 docker run -d -p 8080:8080 --name mytomcat tomcat
@@ -75,6 +81,7 @@ docker run -dit redis => -d means run in background
 docker run -it --rm opensuse bash
 docker run -it --rm --net="host" -v `pwd`:/src redis
 docker run -it --rm --link myredis:redis redis redis-cli -h redis -p 6379
+```
 
 ### How to list all images?
 
@@ -146,14 +153,9 @@ sudo groupadd docker
 sudo usermod -aG docker huanghao
 sudo chown root:docker /var/run/docker.sock
 
-# Terms
-
-* Container :: 容器
-* Image :: 镜像
-
-
 # Docker command examples
 
+```
 docker help run
 docker build -t my-image .
 docker run -d -it \
@@ -190,9 +192,11 @@ docker network ls
 docker network prune
 docker cp nginx:/etc/nginx/nginx.conf /data/app/nginx/
 docker search prometheus
+```
 
 # Dockerfile examples
 
+```
 FROM php:7.0-apache
 ARG http_port=8080
 USER jenkins
@@ -202,16 +206,19 @@ WORKDIR /app  => set /app as current directory, used in the following RUN, COPY,
 VOLUME ["/var/www", "/var/log/apache2", "etc/apache2"]
 RUN cd /app; npm install
 CMD ["node", "app.js"] => default execution scripts
+```
 
 # Options
 
+```
 -h, --hostname
 -i, --interactive
 -t, --tty
 -e, --env
 --rm => Automatically remove the container when it exits.
+```
 
 # Links
 
-https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md
-https://alexanderzeitler.com/articles/docker-machine-and-docker-compose-developer-workflows/
+<https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md>
+<https://alexanderzeitler.com/articles/docker-machine-and-docker-compose-developer-workflows/>
