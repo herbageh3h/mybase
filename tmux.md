@@ -13,7 +13,7 @@ Control + b [ => copy mode
 + tmux a -t hello => reopen session
 + C-b c => new window
 + C-b p/n => toggle window
-+ C-b , => rename pane
++ C-b , => rename window
 + C-b % => split new pane in vertical
 + C-b " => split new pane in horizontal
 + C-b o => toggle pane
@@ -24,6 +24,10 @@ Control + b [ => copy mode
 + C-b :swap-window -t 0 => swap current window with window 0 
 + C-b SPC => switch layout
 + C-b z => toggle fullscreen
++ C-b $ => rename session
++ C-b : => execute command
++ C-b ? => help
++ C-b . => change window to another nonexisted index
 
 
 # Roadmap
@@ -81,8 +85,6 @@ tmux attach -t hello
 ### C-b s :: List all sessions.
 
 ### C-b ( || C-b ) :: Previous/Next session.
-
-### C-b $ :: Rename current session.
 
 ### C-b w :: List all windows.
 
@@ -176,13 +178,3 @@ C-b :swap-pane -t 1 => swap current pane and pane 1
 ### How to clear history?
 
 bind-key u clear-history
-
-
-
-# Hotkey
-
-- Control + b , => rename window
-- Control + b c => new window
-- Control + b : => execute command
-- Control + b ? => help
-- Control + b . => change window to another nonexisted index
