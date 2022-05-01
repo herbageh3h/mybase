@@ -37,6 +37,7 @@ You can use the following commands or hotkeys to open config file.
 :bp
 :bn
 :bd
+<SPC> b
 ```
 
 ### 6. How do I use tabs?
@@ -52,9 +53,22 @@ You can use the following commands or hotkeys to open config file.
 ### 7. How do I use panes?
 
 ```
-Command + w q => close
-Command + w h/j/k/l => move
-Command + w o => max
+Control + w q => close
+Control + w h/j/k/l => move
+Control + w o => max
+```
+
+### 8. How do I search and replace?
+
+```
+:%s/foo/bar/gc  # c switch means to confirm before substitute.
+```
+
+### 9. How do I go back to last place?
+
+```
+Ctrl-o: jump back to last place in jump list
+Ctrl-i: opposite of Ctrl-o
 ```
 
 ## Hotkeys
@@ -78,4 +92,15 @@ Command + w o => max
 let g:netrw_liststyle = 1 "Default long view, showing file size and time stamp.
 let g:netrw_banner = 0 "Hide banner.
 let g:netrw_winsize = 25 "Set width to 25% of the page.
+```
+
+## Plugins
+
+### minpac
+
+```
+:call minpac#update()
+:call minpac#clean()
+:call minpac#add('tpope/vim-unimpaired')
+:call minpac#add('tpope/vim-surround')
 ```
