@@ -220,5 +220,5 @@ CMD ["node", "app.js"] => default execution scripts
 
 # Links
 
-<https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md>
-<https://alexanderzeitler.com/articles/docker-machine-and-docker-compose-developer-workflows/>
++ [yeasy/docker_practice](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
++ [Workflows: using Docker Machine and Docker Compose together in development](https://alexanderzeitler.com/articles/docker-machine-and-docker-compose-developer-workflows/)
