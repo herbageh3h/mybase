@@ -891,10 +891,12 @@ C-x C-o => omni complete, C-n/p => next/previous
 ## vim-easymotion
 \\w
 
-## tcomment_vim
+## tpope/vim-commentary
 
-gcc => toggle current line
-gc{motion}
++ gcc => Comment current line.
++ gc{motion} => Comment text object.
++ gcap => Comment current paragraph.
++ :g/xxx/Commentary => Comment according to regex.
 
 ## vim-fugitive
 
