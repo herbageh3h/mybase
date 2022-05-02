@@ -19,12 +19,62 @@ docker inspect <webserver:container_name>
 docker run -d -p 80:80 nginx:latest => host port : container port
 ```
 
+
 # Roadmap
 
 1. image
 2. container
 3. volume
 4. docker file
+
+
+# Examples
+
+```
+docker help run
+docker build -t my-image .
+docker run -d -it \
+  --name=my-app \
+  --rm \
+  -h my-app-host -p 3000:3000 -v /data/app/myapp/share:/data -e ROLE="master" \
+  --link my-mongo:mongo \
+  -w /src \ => -w means setting working directory
+  --volume-from jenkins-keys \
+  --restart always
+  my-image
+docker stop my-container
+docker rm -v my-container
+docker restart my-container
+docker kill my-container
+docker start my-container
+docker container ls -a
+docker container prune
+docker attach my-container
+docker ps -aq
+docker pull jenkins/jenkins:lts
+docker save -o jenkins.tar jenkins/jenkins
+docker load -i jenkins.tar
+docker logs -f jenkins
+docker version
+docker info
+docker images
+docker rmi 18a77cfec765
+docker export jenkins | gzip > jenkins.gz
+zcat jenkins.gz | docker import - jenkins
+docker commit jenkins hw3a/jenkins:1
+docker inspect my-container
+docker network ls
+docker network prune
+docker cp nginx:/etc/nginx/nginx.conf /data/app/nginx/
+docker search prometheus
+```
+
+# Links
+
++ [yeasy/docker_practice](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
++ [Workflows: using Docker Machine and Docker Compose together in development](https://alexanderzeitler.com/articles/docker-machine-and-docker-compose-developer-workflows/)
++ [amigos docker tutorial video](https://www.youtube.com/watch?v=p28piYY_wv8)
+
 
 # FAQ
 
@@ -51,6 +101,14 @@ brew install --cask docker
 
 <https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04>
 
+## How to install on centos?
+
+```
+yum -y install docker-ce
+brew cask install docker
+```
+For centos: https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce-1
+
 ## How to install and run mysql container?
 
 ```
@@ -64,7 +122,7 @@ see [accelerator](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors).
 
 ## Where to find docker images?
 
-see [docker hub](https://hub.docker.com/).
+See [docker hub](https://hub.docker.com/).
 ```
 docker login
 docker push herbageh2h/webserver
@@ -72,31 +130,34 @@ docker push herbageh2h/webserver
 
 ## How to delete all containers?
 
-docker kill $(docker ps -aq); docker rm $(docker ps -aq)
+```
+docker kill $(docker ps -aq); 
+docker rm $(docker ps -aq)
+```
 
 ## How to detach wihtout stopping the container?
 
-^P ^Q => hotkey to detach
-
-## How to install on centos?
-
 ```
-yum -y install docker-ce
-brew cask install docker
+^P ^Q  "hotkey to detach
 ```
-For centos: https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce-1
 
 ## How to start?
 
+```
 sudo systemctl start docker
+```
 
 ## How to test?
 
+```
 docker run hello-world
+```
 
 ## How to find out version?
 
+```
 docker version
+```
 
 ## Hot to find out the location of the configuration file?
 
@@ -131,7 +192,9 @@ docker container ls -a
 
 ## How to check container logs?
 
-sudo docker container logs myredis
+```
+docker container logs myredis
+```
 
 ## How to stop container?
 
@@ -264,49 +327,3 @@ docker logs -f <webserver:container_name> :: -f means follow.
 ```
 
 
-# Examples
-
-```
-docker help run
-docker build -t my-image .
-docker run -d -it \
-  --name=my-app \
-  --rm \
-  -h my-app-host -p 3000:3000 -v /data/app/myapp/share:/data -e ROLE="master" \
-  --link my-mongo:mongo \
-  -w /src \ => -w means setting working directory
-  --volume-from jenkins-keys \
-  --restart always
-  my-image
-docker stop my-container
-docker rm -v my-container
-docker restart my-container
-docker kill my-container
-docker start my-container
-docker container ls -a
-docker container prune
-docker attach my-container
-docker ps -aq
-docker pull jenkins/jenkins:lts
-docker save -o jenkins.tar jenkins/jenkins
-docker load -i jenkins.tar
-docker logs -f jenkins
-docker version
-docker info
-docker images
-docker rmi 18a77cfec765
-docker export jenkins | gzip > jenkins.gz
-zcat jenkins.gz | docker import - jenkins
-docker commit jenkins hw3a/jenkins:1
-docker inspect my-container
-docker network ls
-docker network prune
-docker cp nginx:/etc/nginx/nginx.conf /data/app/nginx/
-docker search prometheus
-```
-
-# Links
-
-+ [yeasy/docker_practice](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
-+ [Workflows: using Docker Machine and Docker Compose together in development](https://alexanderzeitler.com/articles/docker-machine-and-docker-compose-developer-workflows/)
-+ [amigos docker tutorial video](https://www.youtube.com/watch?v=p28piYY_wv8)

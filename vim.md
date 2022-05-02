@@ -42,6 +42,385 @@
 - Ctrl + a, Ctrl + x :: increment/decrement integer
 - insert mode, Ctrl + v :: unicode input, like u2615 or 065
 
+# Plugins
+
+## nerdtree
+
+o => open
+go => open preview
+
+## ctrlp
+
+git@github.com:ctrlpvim/ctrlp.vim.git
+:CtrlP
+:CtrlPBuffer
+:CtrlPMRU
+C-j/C-k => navigate
+C-r => toggle regex mode
+C-d => toggle file name mode
+C-n/C-p => history prompt
+
+## vundle
+
+### install with neovim
+
+```
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+```
+
+Add following script in your .vimrc file.
+```
+" plugin manager
+filetype off
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim' 
+Plugin 'chriskempson/base16-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'mg979/vim-visual-multi'
+
+call vundle#end() 
+filetype plugin indent on
+```
+
+```
+:source %
+:PluginInstall
+:PluginUpdate
+:PluginClean
+```
+
+## vim-surround
+
++ cs :: change
++ ds :: delete
++ ys :: add
+```
+cs'"
+cs"<q>
+cst"
+ds"
+ysiw]  "iw means a word. ] means no space and [ means a space between.
+cs]{
+yss) => wrap entire line with ()
+first V, then S<p class="important">
+```
+
+## fzf
+
+:Files
+:Buffers
+
+## Neoformat
+
+:Neoformat
+uncrustify -q -l JAVA ~/code/java/myjava/com/herb/Hello.java -c ~/.uncrustify/java.cfg --no-backup
+
+## auto-pairs
+
+()hello, <M-e> quickly move paren to the end of the word. => Fast Wrap
+<M-p> toggle disable/enable
+C-v( in insert mode will not trigger the plugin.
+
+## UltiSnips
+
+:UltiSnipsEdit
+tab => trigger
+
+C-j/k => next/previous placeholder
+
+---java---
+pa => package
+cl => class
+main => public static void main
+p => System.out.println
+
+---js---
+:, => name: value
+
+---snippet---
+snippet hello "demo snippet" b => b means beginning of line
+<${1:div}>
+  `pwd`
+  `!v xxxx `
+  `!p xxxx `
+</${1/(\w+).*/$1/g}>
+endsnippet
+
+---video---
+UltiSnips cast in youtube
+
+## Denite
+
+:help Denite
+:Denite buffer
+:Denite file_rec
+:Denite -input=foo file_rec
+
+## neovim
+sudo zypper in Neovim
+sudo zypper in python3-neovim
+
+chmod u+x nvim.appimage
+./nvim.appimage
+
+## neomake
+
+:Neomake
+:lwindow/:lprev/:lnext/:lopen/C-w q
+
+## vim-javacomplete2
+
+<leader>jI => JavaComplete-Imports-AddMissing
+<leader>jA => JavaComplete-Generate-Accessors
+<leader>jts => JavaComplete-Generate-ToString
+<leader>jeq => JavaComplete-Generate-EqualsAndHashCode
+<leader>jM => JavaComplete-Generate-AbstractMethods
+C-x C-o => omni complete, C-n/p => next/previous
+:JCimportsAddMissing
+
+## vim-easymotion
+\\w
+
+## tpope/vim-commentary
+
++ gcc => Comment current line.
++ gc{motion} => Comment text object.
++ gcap => Comment current paragraph.
++ :g/xxx/Commentary => Comment according to regex.
+
+## vim-fugitive
+
+:Gstatus
+- => stage/unstage
+U => checkout
+D => diff
+[c/]c => prev chagne/next change
+do/dp => diff obtain=submit/diff put=reset
+
+## vim-yankstack
+
+:Yanks
+
+## vim-indentwise
+
+ ```
+[- => lesser level indent
+[= => same level indent
+[+ => greater level indent
+[% => begining of block
+0[_ => absolute level indent
+```
+
+## base16-vim
+
+https://github.com/chriskempson/base16-vim
+
+need first install base16-shell
+https://github.com/chriskempson/base16-shell
+
+## minpac
+
+:call minpac#update()
+:call minpac#clean()
+:call minpac#add('tpope/vim-unimpaired')
+
+## vim-visual-multi
+
++ Ctrl + <Up>, Ctrl + <Down> :: Add vertical cursors. This is in cursor mode.
++ Ctrl + n :: Add next word cursor. Use shift arrow to adjust selected characters. This is in extend mode.
++ <Tab> :: While in multi cursor status, change to visual mode. Switch between cursor mode and extend mode.
+ 
+## vim-markdown
+
++ Plugin 'preservim/vim-markdown'
++ zr :: Open folds by one level.
++ zm :: Close folds by one level.
++ zR :: Open all folds.
++ zM :: Fold everything.
++ za :: Open a fold.
++ zc :: Close a fold.
++ zA :: Open a fold recursively.
++ zC :: Close a fold recursively.
+
+
+# Scripts
+
+## Variable scope
+
+g: => global
+s: => script
+b: => buffer
+w: => window
+t: => tag
+l: => function
+a: => argument
+
+## Useful expressions
+
+expand('%:p') => the full path of the current file
+line('.') => current line no
+col('.') => current column no
+:call cursor(1,1) => jump to line 1, column 1
+&ft => current filetype
+getpos('.') => current posistion
+has('python') => check python support
+echo join(split(&runtimepath, ','), "\n") => print all runtime path
+
+## Vim functions must start with a capital letter if they are unscoped.
+
+## echo/echomsg 'foo'
+
+## 'hello' . 'world'
+
+## pathogen#infect => load autoload/pathogen.vim/infect function
+
+## function! means override
+
+## let line = getline('.')
+
+## let pos = col('.') - 1
+
+## let before = strpart(line, 0, pos)
+
+## line('.') => 2
+
+## matchstr('  hello', '\s*\zs.') => 'h'
+
+## stridx('hello', 'e') => 1
+
+## 'hello'[1] => 'e'
+
+## split('hello', '\zs') => ['h', 'e', 'l', 'l', 'o']
+
+## repeat('h', 5) => 'hhhhh'
+
+## substitue('Hi Mary', 'Mary', 'Judy', 'g') => 'Hi Judy'
+
+   substitue('[apple]', '\v[\[\]]', '\\&', 'g') => '\[apple\]'
+
+## get(['a', 'b'], 0, 'x') => 'a' while 'x' is the default value
+
+## has_key(b:AutoPairs, a:key)
+
+## for
+
+for [open, close] in items(b:AutoPairs)
+  let b:AutoPairsClosedPairs[close] = open
+endfor
+
+## if
+
+if g:AutoPairsMapBS
+  execute 'inoremap <buffer> <silent> <BS> <C-R>=AutoPairsDelete()<CR>'
+endif
+
+## Commands
+
+### echo
+
+echo "Hello, world!"
+
+### echom
+
+echom "Hello, world!"
+
+### set
+set number
+set nonumber
+set number!
+set number?
+set tabstop=4
+set wrap
+setlocal nowrap
+
+### noremap
+
+```
+noremap q: :q
+inoremap jk <Esc>
+nnoremap <M-j> mz:m+<CR>`z
+nnoremap <buffer> <Leader>x dd
+```
+
+### iabbrev
+
+iabbrev adn and
+
+
+# Third-party
+
+## uncrustify
+
+config file: ~/.uncrustify/java.cfg
+force means first remove then add
+sp_sparen_brace=force
+input_tab_size=4
+output_tab_size=4
+indent_columns=4
+indent_with_tabs=2
+sp_template_angle=remove
+
+## ctags
+
+ctags --version
+ctags -R .
+ctags -R -f ./.git/tags .
+
+
+# Article
+
+## Vim Regular Expressions 101
+
+http://vimregex.com/#substitute
+
+## How does :g/^$/,/./-j (reduce multiple blank lines to a single blank) work in vim?
+
+https://stackoverflow.com/questions/3032030/how-does-g-j-reduce-multiple-blank-lines-to-a-single-blank-work-in-vi
+
+## Learn Vimscript the Hard Way - Steve Losh
+
+## A Good Vimrc
+
+https://dougblack.io/words/a-good-vimrc.html
+
+
+# People
+
+## Tim Pope
+
+## Junegunn Choi
+
+## Worp
+
+## Steve Losh
+
+## Chris Toomey
+
+## Martin Grenfell
+
+## Shougo
+
+
+# Python3 support
+
+:python3 print("Hello World!")
+
+
+# Links
+
++ [Vim Awesome](https://vimawesome.com)
+
+
+# Neovim
+
+```
+:checkhealth
+pip3 install --user --upgrade neovim
+~/.config/nvim/init.vim
+```
 
 # FAQ
 
@@ -753,376 +1132,9 @@ Grouping, Quantifiers, Meta Character, Alternation, Character Range, Greedy or N
 \C: case sensitive
 ```
 
+## How to wrap highlighted text with three backticks?
 
-# Plugins
-
-## nerdtree
-
-o => open
-go => open preview
-
-## ctrlp
-
-git@github.com:ctrlpvim/ctrlp.vim.git
-:CtrlP
-:CtrlPBuffer
-:CtrlPMRU
-C-j/C-k => navigate
-C-r => toggle regex mode
-C-d => toggle file name mode
-C-n/C-p => history prompt
-
-## vundle
-
-### install with neovim
-
+Add following scripts in your ~/.config/nvim/after/ftplugin/markdown.vim.
 ```
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+let b:surround_{char2nr('s')} = "```\r```"
 ```
-
-Add following script in your .vimrc file.
-```
-" plugin manager
-filetype off
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim' 
-Plugin 'chriskempson/base16-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'mg979/vim-visual-multi'
-
-call vundle#end() 
-filetype plugin indent on
-```
-
-```
-:source %
-:PluginInstall
-:PluginUpdate
-:PluginClean
-```
-
-## vim-surround
-
-cs'"
-cs"<q>
-cst"
-ds"
-ysiw]
-cs]{
-yss) => wrap entire line with ()
-first V, then S<p class="important">
-
-## fzf
-
-:Files
-:Buffers
-
-## Neoformat
-
-:Neoformat
-uncrustify -q -l JAVA ~/code/java/myjava/com/herb/Hello.java -c ~/.uncrustify/java.cfg --no-backup
-
-## auto-pairs
-
-()hello, <M-e> quickly move paren to the end of the word. => Fast Wrap
-<M-p> toggle disable/enable
-C-v( in insert mode will not trigger the plugin.
-
-## UltiSnips
-
-:UltiSnipsEdit
-tab => trigger
-
-C-j/k => next/previous placeholder
-
----java---
-pa => package
-cl => class
-main => public static void main
-p => System.out.println
-
----js---
-:, => name: value
-
----snippet---
-snippet hello "demo snippet" b => b means beginning of line
-<${1:div}>
-  `pwd`
-  `!v xxxx `
-  `!p xxxx `
-</${1/(\w+).*/$1/g}>
-endsnippet
-
----video---
-UltiSnips cast in youtube
-
-## Denite
-
-:help Denite
-:Denite buffer
-:Denite file_rec
-:Denite -input=foo file_rec
-
-## neovim
-sudo zypper in Neovim
-sudo zypper in python3-neovim
-
-chmod u+x nvim.appimage
-./nvim.appimage
-
-## neomake
-
-:Neomake
-:lwindow/:lprev/:lnext/:lopen/C-w q
-
-## vim-javacomplete2
-
-<leader>jI => JavaComplete-Imports-AddMissing
-<leader>jA => JavaComplete-Generate-Accessors
-<leader>jts => JavaComplete-Generate-ToString
-<leader>jeq => JavaComplete-Generate-EqualsAndHashCode
-<leader>jM => JavaComplete-Generate-AbstractMethods
-C-x C-o => omni complete, C-n/p => next/previous
-:JCimportsAddMissing
-
-## vim-easymotion
-\\w
-
-## tpope/vim-commentary
-
-+ gcc => Comment current line.
-+ gc{motion} => Comment text object.
-+ gcap => Comment current paragraph.
-+ :g/xxx/Commentary => Comment according to regex.
-
-## vim-fugitive
-
-:Gstatus
-- => stage/unstage
-U => checkout
-D => diff
-[c/]c => prev chagne/next change
-do/dp => diff obtain=submit/diff put=reset
-
-## vim-yankstack
-
-:Yanks
-
-## vim-indentwise
-
- ```
-[- => lesser level indent
-[= => same level indent
-[+ => greater level indent
-[% => begining of block
-0[_ => absolute level indent
-```
-
-## base16-vim
-
-https://github.com/chriskempson/base16-vim
-
-need first install base16-shell
-https://github.com/chriskempson/base16-shell
-
-## minpac
-
-:call minpac#update()
-:call minpac#clean()
-:call minpac#add('tpope/vim-unimpaired')
-
-## vim-visual-multi
-
-+ Ctrl + <Up>, Ctrl + <Down> :: Add vertical cursors. This is in cursor mode.
-+ Ctrl + n :: Add next word cursor. Use shift arrow to adjust selected characters. This is in extend mode.
-+ <Tab> :: While in multi cursor status, change to visual mode. Switch between cursor mode and extend mode.
- 
-## vim-markdown
-
-+ Plugin 'preservim/vim-markdown'
-+ zr :: Open folds by one level.
-+ zm :: Close folds by one level.
-+ zR :: Open all folds.
-+ zM :: Fold everything.
-+ za :: Open a fold.
-+ zc :: Close a fold.
-+ zA :: Open a fold recursively.
-+ zC :: Close a fold recursively.
-
-
-# Scripts
-
-## Variable scope
-
-g: => global
-s: => script
-b: => buffer
-w: => window
-t: => tag
-l: => function
-a: => argument
-
-## Useful expressions
-
-expand('%:p') => the full path of the current file
-line('.') => current line no
-col('.') => current column no
-:call cursor(1,1) => jump to line 1, column 1
-&ft => current filetype
-getpos('.') => current posistion
-has('python') => check python support
-echo join(split(&runtimepath, ','), "\n") => print all runtime path
-
-## Vim functions must start with a capital letter if they are unscoped.
-
-## echo/echomsg 'foo'
-
-## 'hello' . 'world'
-
-## pathogen#infect => load autoload/pathogen.vim/infect function
-
-## function! means override
-
-## let line = getline('.')
-
-## let pos = col('.') - 1
-
-## let before = strpart(line, 0, pos)
-
-## line('.') => 2
-
-## matchstr('  hello', '\s*\zs.') => 'h'
-
-## stridx('hello', 'e') => 1
-
-## 'hello'[1] => 'e'
-
-## split('hello', '\zs') => ['h', 'e', 'l', 'l', 'o']
-
-## repeat('h', 5) => 'hhhhh'
-
-## substitue('Hi Mary', 'Mary', 'Judy', 'g') => 'Hi Judy'
-
-   substitue('[apple]', '\v[\[\]]', '\\&', 'g') => '\[apple\]'
-
-## get(['a', 'b'], 0, 'x') => 'a' while 'x' is the default value
-
-## has_key(b:AutoPairs, a:key)
-
-## for
-
-for [open, close] in items(b:AutoPairs)
-  let b:AutoPairsClosedPairs[close] = open
-endfor
-
-## if
-
-if g:AutoPairsMapBS
-  execute 'inoremap <buffer> <silent> <BS> <C-R>=AutoPairsDelete()<CR>'
-endif
-
-## Commands
-
-### echo
-
-echo "Hello, world!"
-
-### echom
-
-echom "Hello, world!"
-
-### set
-set number
-set nonumber
-set number!
-set number?
-set tabstop=4
-set wrap
-setlocal nowrap
-
-### noremap
-
-```
-noremap q: :q
-inoremap jk <Esc>
-nnoremap <M-j> mz:m+<CR>`z
-nnoremap <buffer> <Leader>x dd
-```
-
-### iabbrev
-
-iabbrev adn and
-
-
-# Third-party
-
-## uncrustify
-
-config file: ~/.uncrustify/java.cfg
-force means first remove then add
-sp_sparen_brace=force
-input_tab_size=4
-output_tab_size=4
-indent_columns=4
-indent_with_tabs=2
-sp_template_angle=remove
-
-## ctags
-
-ctags --version
-ctags -R .
-ctags -R -f ./.git/tags .
-
-
-# Article
-
-## Vim Regular Expressions 101
-
-http://vimregex.com/#substitute
-
-## How does :g/^$/,/./-j (reduce multiple blank lines to a single blank) work in vim?
-
-https://stackoverflow.com/questions/3032030/how-does-g-j-reduce-multiple-blank-lines-to-a-single-blank-work-in-vi
-
-## Learn Vimscript the Hard Way - Steve Losh
-
-## A Good Vimrc
-
-https://dougblack.io/words/a-good-vimrc.html
-
-
-# People
-
-## Tim Pope
-
-## Junegunn Choi
-
-## Worp
-
-## Steve Losh
-
-## Chris Toomey
-
-## Martin Grenfell
-
-## Shougo
-
-
-# Python3 support
-
-:python3 print("Hello World!")
-
-
-# Resource
-
-+ [Vim Awesome](https://vimawesome.com)
-
-
-# Neovim
-
-:checkhealth
-pip3 install --user --upgrade neovim
-~/.config/nvim/init.vim
