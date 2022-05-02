@@ -8,9 +8,11 @@ docker ps
 docker container ls
 docker stop <container_id|container_name>
 docker start <container_id|container_name>
-docker log mysql
+docker logs mysql
 docker exec -it mysql bash
 docker build -t hw3aweb:latest .
+docker tag hw3a:latest hw3a:1
+docker inspect <webserver:container_name>
 ```
 
 ```
@@ -26,46 +28,57 @@ docker run -d -p 80:80 nginx:latest => host port : container port
 
 # FAQ
 
-### How to name a container?
+## What are those frequent used pull images?
+
+```
+docker pull nginx:alpine
+docker pull node:alpine
+```
+
+## How to name a container?
 
 ```
 docker run -d -p 80:80 --name webserver nginx:latest
 ```
 
-### How to install on Mac?
+## How to install on Mac?
 
 ```
 brew install --cask docker
 ```
 
-### How to install on DigitalOcean?
+## How to install on DigitalOcean?
 
 <https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04>
 
-### How to install and run mysql container?
+## How to install and run mysql container?
 
 ```
 docker pull mysql/mysql-server:latest
 docker run --name=mysql -d mysql/mysql-server:latest
 ```
 
-### How to accelerate?
+## How to accelerate?
 
 see [accelerator](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors).
 
-### Where to find docker images?
+## Where to find docker images?
 
 see [docker hub](https://hub.docker.com/).
+```
+docker login
+docker push herbageh2h/webserver
+```
 
-### How to delete all containers?
+## How to delete all containers?
 
 docker kill $(docker ps -aq); docker rm $(docker ps -aq)
 
-### How to detach wihtout stopping the container?
+## How to detach wihtout stopping the container?
 
 ^P ^Q => hotkey to detach
 
-### How to install on centos?
+## How to install on centos?
 
 ```
 yum -y install docker-ce
@@ -73,23 +86,23 @@ brew cask install docker
 ```
 For centos: https://docs.docker.com/install/linux/docker-ce/centos/#install-docker-ce-1
 
-### How to start?
+## How to start?
 
 sudo systemctl start docker
 
-### How to test?
+## How to test?
 
 docker run hello-world
 
-### How to find out version?
+## How to find out version?
 
 docker version
 
-### Hot to find out the location of the configuration file?
+## Hot to find out the location of the configuration file?
 
 /etc/docker/daemon.json
 
-### How to run?
+## How to run?
 
 ```
 docker run -d --name myblog -p 8000:80 --link mydb:mysql wordpress
@@ -102,41 +115,41 @@ docker run -it --rm --link myredis:redis redis redis-cli -h redis -p 6379
 docker run -d -p 8080:80 -p 80:80 nginx:latest
 ```
 
-### How to list all images?
+## How to list all images?
 
 ```
 docker images
 docker image ls
 ```
 
-### How to list all containers?
+## How to list all containers?
 
 ```
 docker container ls
 docker container ls -a
 ```
 
-### How to check container logs?
+## How to check container logs?
 
 sudo docker container logs myredis
 
-### How to stop container?
+## How to stop container?
 
 docker container stop
 docker container start
 docker container restart
 
-### How to connect to container?
+## How to connect to container?
 
 docker exec -it 8c87 bash
 
-### How to export/import container snapshot?
+## How to export/import container snapshot?
 
 docker export
 docker import  => load container snapshot from local file
 docker load => load image from local file
 
-### How to delete a container?
+## How to delete a container?
 
 ```
 docker rm <container_id|container_name>
@@ -145,11 +158,11 @@ docker container prune
 docker rm -f <container_id|container_name> :: -f means force.
 ```
 
-### How to search?
+## How to search?
 
 docker search centos
 
-### How to share data between container and host?
+## How to share data between container and host?
 
 use volume
 ```
@@ -166,35 +179,35 @@ docker volume inspect myvol
 docker volume rm myvol
 ```
 
-### How to copy file?
+## How to copy file?
 
 docker cp mynginx:/etc/nginx/nginx.conf /home/herb/data/nginx.conf
 
-### How to build?
+## How to build?
 
 ```
 docker build -t hw3aweb:latest .
 ```
 
-### How to add aliyun accelerator?
+## How to add aliyun accelerator?
 
 https://cr.console.aliyun.com/#/accelerator
 if you can't restart docker after adding the registry mirror, make sure to uncheck 'Securely store docker logins in macos keychains.'
 
-### How to avoid permission denied problem?
+## How to avoid permission denied problem?
 
 sudo groupadd docker
 sudo usermod -aG docker huanghao
 sudo chown root:docker /var/run/docker.sock
 
-### How to use docker ps command?
+## How to use docker ps command?
 
 ```
 docker ps
 docker ps -a
 ```
 
-### How to use dockerfile?
+## How to use dockerfile?
 
 Dockerfile is inside your project root directory.
 
@@ -216,7 +229,42 @@ FROM nginx:latest
 ADD . /usr/share/nginx/html
 ```
 
-# Docker command examples
+```
+FROM node:latest
+WORKDIR /app => In container, create or use /app as main work directory.
+ADD package*.json ./ => package.json is hardly changed, so to use cache, we need to put it as early as possile.
+RUN npm install => Use cache, don't need to install everytime. Only when package.json changed, it needs to install everything again.
+ADD . . => Add current directory to /app in container.
+CMD node index.js
+```
+
+## How to use .dockerignore?
+
+Ignore some files during docker image building.
+```
+node_modules
+Dockerfile
+.git
+```
+
+## How to use docker logs?
+
+```
+docker logs -f <webserver:container_name> :: -f means follow.
+```
+
+## What are those docker run options?
+
+```
+-h, --hostname
+-i, --interactive
+-t, --tty
+-e, --env
+--rm => Automatically remove the container when it exits.
+```
+
+
+# Examples
 
 ```
 docker help run
@@ -257,17 +305,8 @@ docker cp nginx:/etc/nginx/nginx.conf /data/app/nginx/
 docker search prometheus
 ```
 
-# Options
-
-```
--h, --hostname
--i, --interactive
--t, --tty
--e, --env
---rm => Automatically remove the container when it exits.
-```
-
 # Links
 
 + [yeasy/docker_practice](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
 + [Workflows: using Docker Machine and Docker Compose together in development](https://alexanderzeitler.com/articles/docker-machine-and-docker-compose-developer-workflows/)
++ [amigos docker tutorial video](https://www.youtube.com/watch?v=p28piYY_wv8)

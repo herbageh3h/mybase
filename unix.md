@@ -82,6 +82,32 @@ rsync -vrh . root@ocean001:/data/backup
 rsync -avzhe ssh --relative --omit-dir-times --progress ./ docker@$(docker-machine ip default):$(pwd)
 ```
 
+## How to detect how many ports opened in one site?
+
+Use nmap.
+```
+nmap <147.182.238.49:ip>
+```
+
+## How to use fasd?
+
+```
+z => cd with default
+zz => cd with interactive selection
+cp `f molokai` ./ => copy most recent molokai.vim into current folder
+f java$ => list recent .java files
+fasd -A / fasd -D => add or delete paths
+, => file & directory complete
+f, => file complete
+d, => directory complete
+
+climb,,f => tab completion for file starts with climb
+
+C-r => command history search
+C-t => fuzzy find through the current directory
+tab => select current row
+ ** => trigger
+```
 
 # OHMYZSH
 
@@ -94,6 +120,9 @@ see github homepage [ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 
 + [initial server setup](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-20-04#introduction)
 + [install docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+```
+ufw allow 3000 :: Allow port 3000 to be listened.
+```
 
 # UBUNTU
 
