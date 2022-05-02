@@ -1138,3 +1138,16 @@ Add following scripts in your ~/.config/nvim/after/ftplugin/markdown.vim.
 ```
 let b:surround_{char2nr('s')} = "```\r```"
 ```
+
+## What are frequent used shortcuts in markdown editing?
+
+```
+Ss  "Surround with three backticks.
+zR  "Unfold all.
+zM  "Fold all.
+:e  "Refresh in fold state.
+][  "Jump to next heading at the same level.
+]]  "Jump to the next heading.
+]h  "Jump to current heading.
+]u  "Jump to parent heading.
+```

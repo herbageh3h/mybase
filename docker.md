@@ -198,19 +198,25 @@ docker container logs myredis
 
 ## How to stop container?
 
+```
 docker container stop
 docker container start
 docker container restart
+```
 
 ## How to connect to container?
 
+```
 docker exec -it 8c87 bash
+```
 
 ## How to export/import container snapshot?
 
+```
 docker export
-docker import  => load container snapshot from local file
-docker load => load image from local file
+docker import    "load container snapshot from local file
+docker load    "load image from local file
+```
 
 ## How to delete a container?
 
@@ -223,7 +229,9 @@ docker rm -f <container_id|container_name> :: -f means force.
 
 ## How to search?
 
+```
 docker search centos
+```
 
 ## How to share data between container and host?
 
@@ -244,7 +252,9 @@ docker volume rm myvol
 
 ## How to copy file?
 
+```
 docker cp mynginx:/etc/nginx/nginx.conf /home/herb/data/nginx.conf
+```
 
 ## How to build?
 
@@ -252,16 +262,13 @@ docker cp mynginx:/etc/nginx/nginx.conf /home/herb/data/nginx.conf
 docker build -t hw3aweb:latest .
 ```
 
-## How to add aliyun accelerator?
-
-https://cr.console.aliyun.com/#/accelerator
-if you can't restart docker after adding the registry mirror, make sure to uncheck 'Securely store docker logins in macos keychains.'
-
 ## How to avoid permission denied problem?
 
+```
 sudo groupadd docker
 sudo usermod -aG docker huanghao
 sudo chown root:docker /var/run/docker.sock
+```
 
 ## How to use docker ps command?
 
@@ -325,5 +332,3 @@ docker logs -f <webserver:container_name> :: -f means follow.
 -e, --env
 --rm => Automatically remove the container when it exits.
 ```
-
-
