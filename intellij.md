@@ -1,4 +1,4 @@
-### Shortcut
+# Shortcut
 
 + Shift + Shift => Search everywhere
 + Command + Shift + o => Open file
@@ -32,7 +32,8 @@
 + Control + Shift + <SPC> => code completion
 + Command + p => parameter info
 
-### Plugin
+
+# Plugin
 
 - ideavim
 - presentation assistant

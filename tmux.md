@@ -4,30 +4,35 @@
 tmux ls
 tmux new -s hello
 tmux a -t hello
-Control + b d => detach
-Control + b [ => copy mode
+Ctrl-b d    "Detach.
+Ctrl-b [    "Copy mode.
+Ctrl-b x    "Close pane.
+Ctrl-b :swap-window -t 0    "swap current window with window 0.
 ```
 
+
+# Shortcuts
+
 + tmux new -s hello => new session
-+ C-b d => leave the current session
++ Ctrl-b d => leave the current session
 + tmux a -t hello => reopen session
-+ C-b c => new window
-+ C-b p/n => toggle window
-+ C-b , => rename window
-+ C-b % => split new pane in vertical
-+ C-b " => split new pane in horizontal
-+ C-b o => toggle pane
-+ C-b x => close the current pane
-+ C-b ? => list all commands
-+ C-b z => toggle full screen
-+ C-b & => kill window
-+ C-b :swap-window -t 0 => swap current window with window 0 
-+ C-b SPC => switch layout
-+ C-b z => toggle fullscreen
-+ C-b $ => rename session
-+ C-b : => execute command
-+ C-b ? => help
-+ C-b . => change window to another nonexisted index
++ Ctrl-b c => new window
++ Ctrl-b p/n => toggle window
++ Ctrl-b , => rename window
++ Ctrl-b % => split new pane in vertical
++ Ctrl-b " => split new pane in horizontal
++ Ctrl-b o => toggle pane
++ Ctrl-b x => close the current pane
++ Ctrl-b ? => list all commands
++ Ctrl-b z => toggle full screen
++ Ctrl-b & => kill window
++ Ctrl-b :swap-window -t 0 => swap current window with window 0 
++ Ctrl-b SPC => switch layout
++ Ctrl-b z => toggle fullscreen
++ Ctrl-b $ => rename session
++ Ctrl-b : => execute command
++ Ctrl-b ? => help
++ Ctrl-b . => change window to another nonexisted index
 
 
 # Roadmap
@@ -82,58 +87,58 @@ tmux a -t hello
 tmux attach
 tmux attach -t hello
 
-### C-b s :: List all sessions.
+### Ctrl-b s :: List all sessions.
 
-### C-b ( || C-b ) :: Previous/Next session.
+### Ctrl-b ( || Ctrl-b ) :: Previous/Next session.
 
-### C-b w :: List all windows.
+### Ctrl-b w :: List all windows.
 
-### C-b c :: Create window 
+### Ctrl-b c :: Create window 
 
-### C-b , :: Rename window
+### Ctrl-b , :: Rename window
 
-### C-b p/n :: previous/next window
+### Ctrl-b p/n :: previous/next window
 
-### C-b & :: Close the current window.
+### Ctrl-b & :: Close the current window.
 
-### C-b % :: Split horizontally.
+### Ctrl-b % :: Split horizontally.
 
-### C-b " :: Split vertically.
+### Ctrl-b " :: Split vertically.
 
-### C-b o :: Swith between panes.
+### Ctrl-b o :: Swith between panes.
 
-### C-b x :: Close the current pane.
+### Ctrl-b x :: Close the current pane.
 
-### C-b up/right/down/left arrow: Cycle through the panes.
+### Ctrl-b up/right/down/left arrow: Cycle through the panes.
 
-### C-b SPC :: Switch layouts.
+### Ctrl-b SPC :: Switch layouts.
 
-### C-b d :: Detach the current session.
+### Ctrl-b d :: Detach the current session.
 
-### C-b q :: Display the pane number.
+### Ctrl-b q :: Display the pane number.
 
-### C-b ? :: List all the hotkeys.
+### Ctrl-b ? :: List all the hotkeys.
 
-### C-b z :: Zoom in/out the pane, toggle full screen
+### Ctrl-b z :: Zoom in/out the pane, toggle full screen
 
-### C-b [ :: Enter copy mode.
+### Ctrl-b [ :: Enter copy mode.
 
-space -> start selecting text, enter -> end selecting text and copy into clipboard, C-b ] -> paste 
+space -> start selecting text, enter -> end selecting text and copy into clipboard, Ctrl-b ] -> paste 
 
-### C-b : => Execute command.
+### Ctrl-b : => Execute command.
 
-### C-b t => Big clock.
+### Ctrl-b t => Big clock.
 
-### C-b . => Move window to a new index
+### Ctrl-b . => Move window to a new index
 
-### C-b </> :: Swap pane
+### Ctrl-b </> :: Swap pane
 
-### C-b H/J/K/L :: Resize pane
+### Ctrl-b H/J/K/L :: Resize pane
 
 ### How to list all hotkeys?
 
 tmux list-keys | less
-C-b ?
+Ctrl-b ?
 
 ### Configuration file: ~/.tmux.conf
 
@@ -141,20 +146,20 @@ C-b ?
 
 ### How to resize pane?
 
-C-b :
+Ctrl-b :
 resize-pane -D 2
 -U=up, -D=down, -L=left, -R=right
 
 ### How to refresh configuration?
 
-C-b :source-file ~/.tmux.conf
+Ctrl-b :source-file ~/.tmux.conf
 tmux source ~/.tmux.conf
 
 ### How to install tmux plugin manager?
 
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-C-b I: install all plugins
-C-b U: update all plugins
+Ctrl-b I: install all plugins
+Ctrl-b U: update all plugins
 
 ### How to customize themes?
 
@@ -162,18 +167,18 @@ jimeh/tmux-themepack
 
 ### How to execute command on all panes?
 
-C-b :setw synchronise-panes
+Ctrl-b :setw synchronise-panes
 
 ### How to toggle between pane and window?
 
-C-b :joinp -s :1 => merge window 1 to current window
-C-b :joinp -t :1 => join current pane to window 1
-C-b :break-pane  => break current pane to another window
+Ctrl-b :joinp -s :1 => merge window 1 to current window
+Ctrl-b :joinp -t :1 => join current pane to window 1
+Ctrl-b :break-pane  => break current pane to another window
 
 ### How to swap pane?
 
-C-b :swap-pane -U
-C-b :swap-pane -t 1 => swap current pane and pane 1
+Ctrl-b :swap-pane -U
+Ctrl-b :swap-pane -t 1 => swap current pane and pane 1
 
 ### How to clear history?
 
