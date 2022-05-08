@@ -208,6 +208,7 @@ docker container restart
 
 ```
 docker exec -it 8c87 bash
+docker exec -it -u root 8c87 sh    "-u means log in with specified user.
 ```
 
 ## How to export/import container snapshot?
@@ -331,4 +332,128 @@ docker logs -f <webserver:container_name> :: -f means follow.
 -t, --tty
 -e, --env
 --rm => Automatically remove the container when it exits.
+```
+
+## How to clean up completely?
+
+```
+docker container rm -f $(docker container ls -aq)
+docker image rm -f $(docker image ls -aq)
+```
+
+## How to use docker compose command?
+
+Need docker-compose.yml in the root direcotry.
+```
+docker compose build
+docker compose up
+docker compose ps
+docker compose down
+
+docker compose build --no-cache    "Don't use cache, build everytime.
+docker compose up --build -d    "Build before run. -d means in detach mode.
+```
+
+docker-compose.yml example
+```
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
+  backend:
+    build: ./backend
+    ports:
+      - 8080:8080
+    environment:
+      DB_URL: mysql://database/customer
+  database:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - customer:/data/db
+
+volumes:
+  customer:
+```
+
+## How to use docker network command?
+
+docker network help containers in the same docker compose run talk to each other using their name.
+```
+docker network ls
+```
+
+## How to use Kubernetics?
+
++ pod
++ service
++ ingress
++ ConfigMap
++ Secrets
++ Deployment
++ StatefulSet
+
++ cluster
++ master node
++ worker node
++ api server
+
+## How to use kubectl?
+
+```
+kubectl version
+kubectl get nodes
+kubectl get pod
+kubectl get pod -o wide
+kubectl get services
+kubectl get deployment
+kubectl get secret
+kubectl create deployment <name> --image=<image> [--dry-run] [options]
+kubectl create deployment webserver --image=herbageh2h/webserver:1
+kubectl logs <pod_name>
+kubectl describe pod <pod_name>
+kubectl exec -it <pod_name> -- bin/sh
+kubectl apply -f <config_file_name>
+kubectl delete deployment <deployment_name>
+kubectl get all
+```
+
+## How to use minikube?
+
+```
+minikube start
+minikube version
+minikube status
+minikube ip    "ip for master node of minikube.
+minikube service <service_name:mongo-express-service>
+```
+
+## Example of a simple k8s config file?
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.16
+          ports:
+            - containerPort: 80
 ```

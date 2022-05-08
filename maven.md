@@ -1,5 +1,5 @@
-# Maven
-## Quick Start
+# Quick Start
+
 ```
 mvn --version
 mvn -help
@@ -11,8 +11,16 @@ mvn package -Pdist '-Dmaven.test.skip=true' -am
 mvn dependency:tree
 mvn site:site
 ```
-## FAQ
-#### 1. What are included in build cycle?
+
+# Links
+
++ [maven repo](https://mvnrepository.com)
+
+
+# FAQ
+
+## 1. What are included in build cycle?
+
 - validate
 - generate-sources
 - process-sources
@@ -20,7 +28,8 @@ mvn site:site
 - process-resources
 - compile
 
-#### 2. How many phases are included?
+## 2. How many phases are included?
+
 - validate
 - compile
 - test
@@ -30,7 +39,8 @@ mvn site:site
 - install
 - deploy
 
-#### 3. What is the standard directory layout? 
+## 3. What is the standard directory layout? 
+
 see [directory layout](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
 
 All things under the directory `src/main/resources` will be copied to target directory.
