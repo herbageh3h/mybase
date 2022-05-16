@@ -1,6 +1,4 @@
-# Python
-
-## Quick Start
+# Quick Start
 
 ```
 python -m venv env
@@ -15,16 +13,16 @@ flake8 dirtool.py
 python -m pdb demo.py
 ```
 
-## FAQ
+# FAQ
 
-### 1. How to convert str to bytes?
+## How to convert str to bytes?
 
 ```
 ss.encode('utf-8')
 bytes(ss, encoding='utf-8')
 ```
 
-### 2. How to deal with time?
+## How to deal with time?
 
 ```
 from datetime import datetime as dt
@@ -56,14 +54,14 @@ print(int(delta.total_seconds()))
 * %w: weekday as number. eg. 0, 1, 6
 * %z: timezone in utc offset. eg. -0000, +0530, -7000
 
-### 3. How to deal with unicode?
+## How to deal with unicode?
 
 ```
 ord(u'$')
 chr(176)
 ```
 
-### 4. How to deal with ModuleNotFoundError?
+## How to deal with ModuleNotFoundError?
 
 On windows, set environment variable.
 
@@ -71,15 +69,15 @@ On windows, set environment variable.
 set PYTHONPATH = "."
 ```
 
-## Regular Expression
+# Regular Expression
 
-### meta characters (14)
+## meta characters (14)
 
 ```
 . * + ? ^ $ | ( ) [ ] { } \
 ```
 
-### meta classes
+## meta classes
 
 ```
 \d => [0-9]
@@ -90,9 +88,9 @@ set PYTHONPATH = "."
 \W => [^a-zA-Z0-9_]
 ```
 
-## Scripts
+# Scripts
 
-### Command Line Arguments Parser
+## Command Line Arguments Parser
 
 ```
 import argparse
@@ -110,7 +108,7 @@ search = args.search
 times = args.times
 ```
 
-### File reading and writing
+## File reading and writing
 
 ```
 import os
@@ -125,13 +123,13 @@ with open(os.path.join(os.path.dirname(path), 'fruit_sorted'), 'wt') as f2
         print(fruit.strip(), file=f2)
 ```
 
-## str
+# str
 
 ```
 print(fruit.strip())
 ```
 
-## list
+# list
 
 ```
 fruits.sort()
@@ -139,7 +137,7 @@ fruits.sort()
 l2 = l1[:]
 ```
 
-## print
+# print
 
 ```
 fruits = ['apple', 'banana', 'orange']
@@ -148,7 +146,7 @@ print(*fruits, sep=',')
 print('Hello, World', end='!')
 ```
 
-## Keywords
+# Keywords
 
 - True
 - False
@@ -184,31 +182,32 @@ print('Hello, World', end='!')
 - global
 - nonlocal
 
-## Tools
+# Tools
 
-### Flake8
+## Flake8
 
 ```
 flake8 dirtool.py
 ```
 - [flake8 rules]("https://www.flake8rules.com/")
 
-### pip
+## pip
 
 ```
 pip --version
 pip list
 python -m pip install --upgrade pip
 pip install --upgrade flake8
+pip freeze
 ```
 
-## pdb
+# pdb
 
 ```
 python -m pdb demo.py
 ```
 
-### pdb commands
+## pdb commands
 
 * q: quit
 * p: print
@@ -226,6 +225,6 @@ python -m pdb demo.py
 * w: print call stack
 * h: help
 
-## Resources
+# Links
 
 - [Understanding Object Instantiation and Metaclasses in Python](https://www.honeybadger.io/blog/python-instantiation-metaclass/)

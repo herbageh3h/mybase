@@ -87,3 +87,17 @@ In vscode, extensions -> install from vsix.
 ## How to open settings.json?
 
 Open command palette, type "open settings", edit json file.
+
+## How to use .vimrc?
+
+Open settings -> Type vimrc -> Enable "Use Keymapping from a .vimrc file" option
+
+.vimrc ususally found in ~/.vimrc.
+
+## How to use copy and paste?
+
+Open settings json, add following config.
+
+```
+"vim.useSystemClipboard": true
+```

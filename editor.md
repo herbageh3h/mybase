@@ -12,11 +12,10 @@ IDE Commands.
 - Toggle zen mode      :: cmd+z
 - Toggle full screen mode :: cmd+shift+z
 
-Tab commands.
-- Close editor tab     :: cmd+w
-- Reopen closed tab    :: cmd+shift+r
-- Open previous tab    :: cmd+left
-- Open next tab        :: cmd+right
+Frequent commands.
+- Open files           :: cmd+e
+- Open recent files    :: cmd+r
+- Code completion      :: cmd+.
 
 Window commands.
 - Toggle side bar      :: cmd+1
@@ -25,11 +24,24 @@ Window commands.
 - Go to terminal       :: cmd+shift+2
 - Toggle console       :: cmd+4
 - Toggle debug         :: cmd+5
+- Go to test           :: cmd+shift+t
 
-File commands.
-- Open files           :: cmd+e
-- Open recent files    :: cmd+r
+Tab commands.
+- Close editor tab     :: cmd+w
+- Reopen closed tab    :: cmd+shift+r
+- Open previous tab    :: cmd+left
+- Open next tab        :: cmd+right
 
 Edit commands.
-- Move one line up     :: alt+up
-- Move one line doown  :: alt+down
+- Generate test data   :: cmd+t
+- Move one line up     :: cmd+k
+- Move one line down   :: cmd+j
+
+Multi cursors.
+- Add selection to next find match      :: cmd+d
+- Cursor undo                           :: cmd+u
+- Cursor redo
+- Add selection to previous find match
+- Select all occurrences of find match
+- Add cursor below                      :: cmd+alt+<down>
+- Add cursor above                      :: cmd+alt+<up>

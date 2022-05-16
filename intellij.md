@@ -31,6 +31,9 @@
 + Option + / => code completion
 + Control + Shift + <SPC> => code completion
 + Command + p => parameter info
++ Cmd+Shift+t :: Go to test.
++ alt+enter :: Context menu.
++ cmd+b :: Go to declaration.
 
 
 # Plugin

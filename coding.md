@@ -12,11 +12,13 @@
 - sets
 - maps
 - functions
-- control structure
+- conditionals
 - loops
 - classes
 - modules
-
+- regular expressions
+- files
+- json
 
 # Comments
 
@@ -224,14 +226,128 @@ person2 = person.copy()
 
 # Functions
 
+- create a function
+- call a function
+- return value
+- lambda function
 
-# Control Structure
+```python3
+def say_hello(name = 'James'):
+  print(f'hello, {name}')
+  return 'Done'
+
+say_hello('Jeff')
+
+get_sum = lamda num1, num2 : num1 + num2         # lambda function
+```
+
+
+# Conditionals
+
+- and, or, not
+- in, not in
+- is, is not
+
+```python3
+if x > y:
+  foo()
+elif x == y:
+  baz()
+else:
+  bar()
+
+if x not in fruits:
+  print(x)
+```
 
 
 # Loops
 
+- for loop
+- while loop
+- break
+- range
+
+```python3
+for person in people:
+  if person == 'Jeff':
+    break
+  elif person == 'Andy':
+    continue
+  print(person)
+
+for i in range(0, 11):       # Print 1-10, not included 11.
+  print(i)
+
+while count <= 10:
+  count += 1
+```
 
 # Classes
 
+In python, almost everything is an object.
+
+- create a class
+- create an object
+- extend a class
+
+```python3
+class User:
+  def __init__(self, name):
+    self.name = name
+
+jeff = User('Jeff')
+print(jeff.name)
+
+class Dog(Animal):
+```
+
 
 # Modules
+
+In python, a module is a file.
+
+```python3
+import datetime
+from datetime import date
+import time
+
+today = datetime.date.today()
+timestamp = time.time()
+```
+
+
+# Regular Expressions
+
+```python3
+import re
+  
+re.match("^.+@(\[?)[a-zA-Z0-9-.]+.([a-zA-Z]{2,3}|[0-9]{1,3})(]?)$", email)
+```
+
+
+# Files
+
+```python3
+my_file = open('foo.txt', 'w')
+my_file = open('foo.txt', 'r+')
+my_file.write('hello')                 # no new line
+text = my_file.read(100)
+my_file.close()
+my_file = open('foo.txt', 'a')         # append mode
+
+print(my_file.name)
+print(my_file.closed)
+print(my_file.mode)
+```
+
+
+# Json
+
+```python3
+import json
+
+user_json = '{"first_name": "Jeff", "last_name": "Huang", "age": 30}'
+user = json.loads(user_json)
+foo_json = json.dumps(user)
+```
