@@ -28,4 +28,6 @@ heroku run echo \$JDBC_DATABASE_URL
 heroku local web
 heroku config:set <VAR_NAME:ENERGY>=<VAR_VALUE:"20 Gev">
 heroku run java -version
+heroku git:remote -a hw3a-device-seller
+git push heroku main:main
 ```

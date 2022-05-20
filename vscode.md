@@ -50,6 +50,30 @@ Cmd+<up>/Cmd+<down>    "Open/Close folder in explorer tree.
 ```
 
 
+# Roadmap
+
+- shortcuts
+
+
+# Tutorial
+
+- command palette
+- toggle sidebar
+- toggle terminal
+- open user setting
+- open file
+- navigate through tab
+- split window
+- close file
+- full text search
+- comment
+- multi cursor
+- expand selection
+- rename symbol
+- go to definition
+- move line up
+
+
 # Tips
 
 1. Toggle mini maps off.
@@ -101,3 +125,12 @@ Open settings json, add following config.
 ```
 "vim.useSystemClipboard": true
 ```
+
+## How to use command palette?
+
+Use cmd+shift+p to open dialogue.
+
+- >xx :: search action
+- xx :: search file
+- @xx :: search current structure
+- #xx :: search global symbol

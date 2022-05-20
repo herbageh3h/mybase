@@ -7,7 +7,6 @@
 + Option + Enter => Context menu
 + Control + Shift + r => Run
 + Command + 1 => Toggle project tag
-+ Command + Shift + t => Go to Test
 + Command + , => Preference
 + Command + ; => Project structure
 + Command + n => go to class
@@ -31,9 +30,10 @@
 + Option + / => code completion
 + Control + Shift + <SPC> => code completion
 + Command + p => parameter info
-+ Cmd+Shift+t :: Go to test.
++ cmd+shift+t :: Go to test.
 + alt+enter :: Context menu.
 + cmd+b :: Go to declaration.
++ ctrl+alt+b :: Go to implementaion.
 
 
 # Plugin
@@ -41,3 +41,12 @@
 - ideavim
 - presentation assistant
 - ace jump
+
+
+# FAQ
+
+## How to launch intellij from command line?
+
+Use Tools -> Create Command-Line Launcher... to generate launch script under /usr/local/bin directory.
+
+`idea .` to open current directory in intellij.
