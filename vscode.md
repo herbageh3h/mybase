@@ -134,3 +134,9 @@ Use cmd+shift+p to open dialogue.
 - xx :: search file
 - @xx :: search current structure
 - #xx :: search global symbol
+
+## How to write markdown files?
+
+Use extension `Markdown All in One`.
+
+- cmd+' v :: Open preview to the side.
