@@ -199,6 +199,7 @@ Remove files in both stage area and work directory.
 ## git stash
 
 - 把当前现场保存下来，等以后再进行恢复
+- git stash save <name:tmp>
 - git stash list
 - git stash apply 恢复到之前保存的现场
     + git stash apply stash@{0}
@@ -397,4 +398,11 @@ First undo a merge.
 ```
 git merge --abort
 git reset --merge
+```
+
+## How to untrack files that were tracked but now in .gitignore?
+
+```bash
+git rm --cached <file>
+git rm -r --cached <folder>
 ```

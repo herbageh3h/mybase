@@ -1,5 +1,6 @@
 # Shortcut
 
++ cmd+opt+o(ctrl+alt+o) => organize import
 + Shift + Shift => Search everywhere
 + Command + Shift + o => Open file
 + Command + e => Recent file
@@ -24,7 +25,6 @@
 + Command + Option + p => extract parameter
 + Command + Option + n => inline variable
 + Command + w => expand selection
-+ Command + Option + o => organize import
 + Shift + F6 => rename
 + Control + / => code completion remapped
 + Option + / => code completion
@@ -44,9 +44,3 @@
 
 
 # FAQ
-
-## How to launch intellij from command line?
-
-Use Tools -> Create Command-Line Launcher... to generate launch script under /usr/local/bin directory.
-
-`idea .` to open current directory in intellij.

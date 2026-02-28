@@ -8,10 +8,12 @@ pip list
 pip install flake8
 pip install --upgrade flake8
 
-flake8 dirtool.py
-
 python -m pdb demo.py
 ```
+Use black to format your code.
+
+Use flake8 to check your code.
+
 
 # FAQ
 
@@ -67,6 +69,13 @@ On windows, set environment variable.
 
 ```
 set PYTHONPATH = "."
+```
+
+## How to build and install?
+
+```
+python setup.py build
+python setup.py install
 ```
 
 # Regular Expression

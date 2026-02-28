@@ -2,8 +2,9 @@
 
 - code .
 - vscodevim, vspacecode
+- font: source code pro
 
-```
+```text
 Cmd+Shift+p    "Command palette.
 Cmd+w          "Close window.
 Cmd+b          "Toggle sidebar.
@@ -50,6 +51,20 @@ Cmd+<up>/Cmd+<down>    "Open/Close folder in explorer tree.
 ```
 
 
+# VSCodeVim
+
+- gf               :: Go to file
+- gd               :: Go to definition
+- gh               :: Show help
+
+
+- settings
+"vim.useCtrlKeys": false,
+"vim.handleKeys": { 
+    "<C-w>": false 
+}
+
+
 # Roadmap
 
 - shortcuts
@@ -74,18 +89,19 @@ Cmd+<up>/Cmd+<down>    "Open/Close folder in explorer tree.
 - move line up
 
 
-# Tips
-
-1. Toggle mini maps off.
-2. Try zen mode.
-3. Turn word wrap on.
-
-
 # Settings
 
-- editor.minimap.enabled = false
-- files.autoGuessEncoding = true
-- workbench.editor.enablePreview = false
+- workbench.colorTheme: "Monokai"
+- editor.minimap.enabled: false
+- editor.fontSize: 16
+- editor.tabSize: 2
+- editor.wordWrap: on
+- editor.bracketPairColorization.enabled: true
+- files.autoGuessEncoding: true
+- workbench.editor.enablePreview: false
+- vim.vimrc.enable: true
+- vim.leader: " "
+- viim.useSystemClipboard: true
 
 
 # Links
@@ -134,9 +150,20 @@ Use cmd+shift+p to open dialogue.
 - xx :: search file
 - @xx :: search current structure
 - #xx :: search global symbol
+- ? :: help
 
 ## How to write markdown files?
 
 Use extension `Markdown All in One`.
 
-- cmd+' v :: Open preview to the side.
+- cmd+\ :: Open preview to the side.
+
+## How to inspect jsconfig.json?
+
+Open your file in vscode.
+
+Run `JavaScript: go to project configuration` to find the jsconfig.
+
+## How to change keyboard shortcuts?
+
+Preferences: Open Keyboard Shortcuts

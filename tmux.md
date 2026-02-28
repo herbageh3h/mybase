@@ -1,17 +1,20 @@
-# Quick Start
+# Tmux
+
+## Quick Start
 
 ```
-tmux ls
+tmux -V
 tmux new -s hello
 tmux a -t hello
+tmux ls
 Ctrl-b d    "Detach.
-Ctrl-b [    "Copy mode.
+Ctrl-b [    "Copy mode. Press 'q' to quit copy mode.
 Ctrl-b x    "Close pane.
 Ctrl-b :swap-window -t 0    "swap current window with window 0.
 ```
 
 
-# Shortcuts
+## Shortcuts
 
 + tmux new -s hello => new session
 + Ctrl-b d => leave the current session
@@ -35,14 +38,14 @@ Ctrl-b :swap-window -t 0    "swap current window with window 0.
 + Ctrl-b . => change window to another nonexisted index
 
 
-# Roadmap
+## Roadmap
 
 1. session
 2. window
 3. pane
 
 
-# FAQ
+## FAQ
 
 ### How do I rename a window and keep it unchanged automatically?
 

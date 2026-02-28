@@ -16,6 +16,84 @@ install oh-my-zsh fasd, fzf, fd, ripgrep, tree
 
 # Commands
 
+## grep command
+
+```bash
+grep 'model name' /proc/cpuinfo
+grep MemTotal /proc/meminfo
+grep -l mango * => -l表示列出有匹配记录的文件清单，-L表示列出不含匹配记录的文件清单。
+grep -R '/var/lib/docker' *.sh => -R means recursive search under the current directory
+grep -n apple foo => -n means to print line number
+grep -H apple foo => -H means to add filename to output
+grep 'apple\|banana' foo
+grep -E 'apple|banana' foo
+grep -Fnr kgsp ./ => -F means only search the string, not regex.
+grep -v hello test :: 搜索test文件中不包含hello的文本行
+egrep 'hello|morning' test :: 搜索test文件中包含hello或者morning的文本行
+grep vim history.txt -> find all lines that contains vim.
+grep '' **/income.txt -> show the name of each file and its content.
+grep '\<80\>' foo -> find words that is just 80, not 8080.
+grep -o '\b[0-9]{5}\b' address.txt => Print numbers that look like US zip code, -o means only print the matching part.
+```
+
+## sed command
+
++ sed是在线编辑工具, sed先将文件的一行读入缓存区，然后对该行内容执行所有的命令，并将处理后的结果进行输出。
++ sed主要的功能包括打印、删除和替换。
++ sed 's/test/prod/g' file1 > file2 => 批量替换
++ sed '/^$/d' test => delete empty lines
++ sed -n '/test/p' test :: -n表示不打印任何文本行，p表示打印符合条件的行，这两个参数通常结合使用
++ sed '2d' test
++ sed -n '10p' foo => 打印第10行
++ sed '2,$d' test
++ sed '2,10!d' foo => 打印除第2行到第10行以外的行
++ sed '1~2p' foo => 打印基数行
++ sed '/test/d' test
++ sed -i 's/foo/bar/g' foo.txt => replace all foo to bar in foo.txt, -i means to write back to foo.txt.
++ sed 's/test/second &/' test :: &代表匹配到的文本内容
++ sed 's/\(es\)/\1s/' test :: \1代表括号匹配到的内容
++ sed -n '/afternoon/,/evening/p' test :: ,表示行范围
++ sed '/afternoon/,/evening/s/$/ end/' test :: 针对afternoon到evening之间的所有行，每行末尾增加' end'字符串
++ sed -e '1d' -e '1d' test :: 针对每一行同时执行多项命令
++ sed 's/foo/bar/g;s/apple/banana/g' fruit => 分号连接多个编辑命令
++ sed '/hello/r bye' test :: 在test文件的每一行包含hello的行下面添加bye文件的内容
++ sed '/afternoon/{n; s/hello/bye/;}' test :: n代表移动到下一行, 大括号代表一组命令
++ sed '1,$y/h/R/' test
++ sed -n '/^#/!p' /etc/passwd :: 打印passwd文件中不是以#开头的文本行
++ sed -i '1s/^\xef\xbb\xbf//' AllTest.java :: 将UTF-8(BOM)转换为UTF-8
++ sed -ire '\?^[[:space:] ]*DOCKER_HOME=? d' /etc/profile.local => -r means extended regular expression
+
+## awk command
+
++ awk是文本分析工具
++ awk '{print $2}' /etc/passwd
++ awk -F: '/^root:/{print $1, $3, $6;}' /etc/passwd
++ awk -F: '{print $1}' source_file
++ awk '{print NF}' /etc/passwd
++ df -P | awk 'NR>2{sum += $2}END{print sum}' => NR>2 means calc from line number 2.
++ cat /etc/passwd | sed -n '/^#/!p' | awk -F: 'BEGIN {linum = 0;} {print linum,":",$1; linum = linum + 1;}'
++ ls -l /home | awk '{if (NR > 1) print $9}'
++ awk '/^color00=/,/^$/ {print}' base16-monakai.sh | sed 's/#.*//'
++ awk -F: '$3>=1000{printf("User:%-15sUID:%s\n", $1, $3);}' /etc/passwd => 第3个字段大于1000的才进行打印
++ cat 360.csv | awk -F',' '{if(length($1)==3) print $0}'
++ cat 3603.csv | awk -F',' '{if($2=="n") print $0}'
+
+## find command
+
+```
+find . -name "*.sh"
+find . -name .DS_Store -exec rm '{}' \; => quote {} Because the file path may contain space. Backslash ; because ; is special in shell.
+find . -iname "*.bin" => ignore uppercase or lowercase
+find * -type f
+find . -type f -mtime +3 -mtime -4 => Find files that were modified over 3 days but not 4 days.
+find . -type f -mtime 3 => Find files that were modified just 3 days before.
+find . -type f/d/l => f:file, d:direcotry, l:link
+find . -executable -type f => find all executable under current directory and not including children directory
+find . -executable -type f -exec mv {} /data/app/redis/bin \;
+find . -user foo -a \( -name '*.c' -o -name '*.h' \) -a -perm 644 -a -atime +8 => -a means and, -o means or
+find . ! \( -name "*.sh" -o -name "*.txt" \)
+```
+
 ## ln
 
 ```
@@ -29,7 +107,7 @@ Only a soft link can refer to a directory while a hard link can not.
 ## base64
 
 echo msm | base64
-eecho bXNtCg== | base64 -d
+echo bXNtCg== | base64 -d
 
 ## ssh
 
@@ -44,17 +122,6 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub huanghao@ali001
 ```
 mkdir -p zsh_demo/{data,calculations}/africa/{kenya,malawi}/ zhs_demo/{data,calculations}/europe/{malta,poland}/ zsh_demo/{data,calculations}/asia/{nepal,laos}
 ```
-
-## ln :: Create links.
-
-```
-ln -s /tmp/ ./abc :: Create a soft link "abc" poingting to "/tmp" directory.
-ln -sf /usr/bin/python36 python :: -f means to update link.
-ln schedule /datafs/bims :: Create link "/datafs/bims" pointing to "schedule" executable.
-```
-To delete link, just use "rm" command.
-
-Only a soft link can refer to a directory while a hard link can not. 
 
 ## chown
 

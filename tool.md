@@ -1,17 +1,19 @@
-# Pandoc
+# Dev Tools
+
+## Pandoc
 
 ```
 pandoc -o <output.docx> -f markdown -t docx <myfile.md>
 ```
 
-# Draw.io
+## Draw.io
 
 - Ctrl+b :: bold
 - Ctrl+u :: underline
 - Ctrl+Shift+y :: auto resize
 - Ctrl+Enter :: Add a row
 
-# Heroku
+## Heroku
 
 ```
 heroku login
@@ -30,4 +32,13 @@ heroku config:set <VAR_NAME:ENERGY>=<VAR_VALUE:"20 Gev">
 heroku run java -version
 heroku git:remote -a hw3a-device-seller
 git push heroku main:main
+```
+
+## nginx
+
+```
+sudo service nginx start
+sudo service nginx stop
+sudo service nginx restart
+sudo service nginx status
 ```

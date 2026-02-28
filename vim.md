@@ -12,6 +12,7 @@
 - :help 'textwidth'
 - :ls => list all buffers, :b1 => switch to the first buffer, :bprev => previous buffer, :bnext => next buffer, :bd => delete buffer
 - pip3 install --user --upgrade neovim
+
 <https://shrydj.edu.sh.cn/views/register/>
 
 
@@ -26,10 +27,18 @@
 7. ex commands
 8. regex
 9. .vimrc
-10. files
+10. files & buffers
 11. tabs & windows
 12. plugins
 13. scripts
+
+
+# Links
+
++ [Vim Tip Wiki](https://vim.fandom.com/wiki/Vim_Tips_Wiki)
++ [Vim Awesome](https://vimawesome.com)
++ [7 Vim Tips That Changed My Life](https://www.freecodecamp.org/news/7-vim-tips-that-changed-my-life/)
++ [Vim Cheat Sheet](https://vim.rtorr.com)
 
 
 # Basics
@@ -41,6 +50,8 @@
 - Ctrl + 6 :: switch between the latest two files
 - Ctrl + a, Ctrl + x :: increment/decrement integer
 - insert mode, Ctrl + v :: unicode input, like u2615 or 065
+- zo :: open fold
+- zc :: close fold
 
 # Plugins
 
@@ -61,8 +72,6 @@ C-d => toggle file name mode
 C-n/C-p => history prompt
 
 ## vundle
-
-### install with neovim
 
 ```
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
@@ -152,34 +161,12 @@ endsnippet
 ---video---
 UltiSnips cast in youtube
 
-## Denite
-
-:help Denite
-:Denite buffer
-:Denite file_rec
-:Denite -input=foo file_rec
-
 ## neovim
 sudo zypper in Neovim
 sudo zypper in python3-neovim
 
 chmod u+x nvim.appimage
 ./nvim.appimage
-
-## neomake
-
-:Neomake
-:lwindow/:lprev/:lnext/:lopen/C-w q
-
-## vim-javacomplete2
-
-<leader>jI => JavaComplete-Imports-AddMissing
-<leader>jA => JavaComplete-Generate-Accessors
-<leader>jts => JavaComplete-Generate-ToString
-<leader>jeq => JavaComplete-Generate-EqualsAndHashCode
-<leader>jM => JavaComplete-Generate-AbstractMethods
-C-x C-o => omni complete, C-n/p => next/previous
-:JCimportsAddMissing
 
 ## vim-easymotion
 \\w
@@ -219,6 +206,7 @@ do/dp => diff obtain=submit/diff put=reset
 https://github.com/chriskempson/base16-vim
 
 need first install base16-shell
+
 https://github.com/chriskempson/base16-shell
 
 ## minpac
@@ -297,6 +285,14 @@ echo join(split(&runtimepath, ','), "\n") => print all runtime path
 
 ## repeat('h', 5) => 'hhhhh'
 
+
+
+
+
+
+
+
+
 ## substitue('Hi Mary', 'Mary', 'Judy', 'g') => 'Hi Judy'
 
    substitue('[apple]', '\v[\[\]]', '\\&', 'g') => '\[apple\]'
@@ -350,31 +346,11 @@ nnoremap <buffer> <Leader>x dd
 iabbrev adn and
 
 
-# Third-party
-
-## uncrustify
-
-config file: ~/.uncrustify/java.cfg
-force means first remove then add
-sp_sparen_brace=force
-input_tab_size=4
-output_tab_size=4
-indent_columns=4
-indent_with_tabs=2
-sp_template_angle=remove
-
-## ctags
-
-ctags --version
-ctags -R .
-ctags -R -f ./.git/tags .
-
-
 # Article
 
 ## Vim Regular Expressions 101
 
-http://vimregex.com/#substitute
+<http://vimregex.com/#substitute>
 
 ## How does :g/^$/,/./-j (reduce multiple blank lines to a single blank) work in vim?
 
@@ -409,11 +385,6 @@ https://dougblack.io/words/a-good-vimrc.html
 :python3 print("Hello World!")
 
 
-# Links
-
-+ [Vim Awesome](https://vimawesome.com)
-
-
 # Neovim
 
 ```
@@ -424,7 +395,7 @@ pip3 install --user --upgrade neovim
 
 # FAQ
 
-## Q: How to use text objects?
+## How to use text objects?
 
 ```
 ciw, caw
@@ -438,15 +409,15 @@ ci', ca'
 ci", ca"
 ```
 
-## Q: How to open vimrc?
+## How to open vimrc?
 
 ```
 <Leader>vr
 vim8 => ~/.vim
-neovim => ~/.config/nvim
+neovim => ~/.config/nvim/init.vim
 ```
 
-## Q: How to unquote a word?
+## How to unquote a word?
 
 - 'hello' => hello
 - di'hPlxx
@@ -455,15 +426,6 @@ neovim => ~/.config/nvim
 ## How do I explore files in vim?
 
 See <https://shapeshed.com/vim-netrw/>.
-
-## How do I edit my config file?
-
-Neovim has the configuration file in ~/.config/nvim/init.vim  
-You can use the following commands or hotkeys to open config file.  
-```
-:find $MYVIMRC
-<SPC> vr
-```
 
 ## How do I reload my config file without restarting vim?
 
@@ -519,14 +481,14 @@ Ctrl-o: jump back to last place in jump list
 Ctrl-i: opposite of Ctrl-o
 ```
 
-## Q: How to use g command?
+## How to use g command?
 
 ```
 :g/^$/,/./-j => merge multiple blank lines
 :g/<p>/normal @q => exectue macro in matched lines
 ```
 
-## Q: How to use ex commands?
+## How to use ex commands?
 
 ```
 :'<,'>t0 :: Copy current highlight text to the start of the file.
@@ -538,31 +500,31 @@ Ctrl + d :: Auto completion in ex commands.
 Ctrl + r + Ctrl + w :: In command mode, copy current word into the command.
 ```
 
-## Q: How to refresh file content?
+## How to refresh file content?
 
 :e
 
-## Q: How to check the setting value?
+## How to check the setting value?
 
 :set number?
 :set tabstop?
 
-## Q: How to close buffer?
+## How to close buffer?
 
 :bd
 
-## Q: How to record macro?
+## How to record macro?
 
 q => start recording.
 q => stop recording.
 @x => execute macro x.
 
-## Q: How to open file browser?
+## How to open file browser?
 
 :Vex => open pane
 C-w q => close pane
 
-## Q: How to find help?
+## How to find help?
 
 ```
 :help g;
@@ -580,17 +542,17 @@ ctrl-] jump to subject
 ctrl-t/ctrl-o jump back/forward
 ```
 
-## Q: How to show all key bindings?
+## How to show all key bindings?
 
 :map
 :nmap g => all key bindings started with g
 :verbose nnoremap
 
-## Q: How to test color theme?
+## How to test color theme?
 
 :source $VIMRUNTIME/syntax/hitest.vim
 
-## Q: How to do the color theme?
+## How to do the color theme?
 
 red
 green
@@ -601,11 +563,11 @@ cyan
 orange => bright red
 purple => bright magenta
 
-## Q: How to do keybindings?
+## How to do keybindings?
 
 http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
 
-## Q: How many modes in vim?
+## How many modes in vim?
 
 normal
 insert
@@ -615,15 +577,16 @@ replace
 select
 operator-pending
 
-## Q: How to enter select mode?
+## How to enter select mode?
 
 gh
 
-## Q: What is the select mode used for?
+## What is the select mode used for?
+
 Select mode is used mainly for snippet plugins which highlight the current placeholder waiting
 user to type some character to replace what was in the placeholder with just a single key.
 
-## Q: How to check one key mapping?
+## How to check one key mapping?
 
 :map <C-h>
 
@@ -637,20 +600,19 @@ i => insert
 ! => insert or command
 c => command
 
- * => not remappable
- @ => buffer local mapping
- & => script local mapping can be remappable
+@ => buffer local mapping
+& => script local mapping can be remappable
 
-## Q: How to quickly open a new buffer?
+## How to quickly open a new buffer?
 
 :ene => open a new unamed buffer
 
-## Q: How to open quickfix or location window?
+## How to open quickfix or location window?
 
 :cw => open quickfix window
 :lw => open location window
 
-## Q: How to find out all the keycodes?
+## How to find out all the keycodes?
 
 :help keycodes
 
@@ -662,38 +624,38 @@ c => command
 <Space>
 <F1>
 
-## Q: How to convert all existing tabs into spaces?
+## How to convert all existing tabs into spaces?
 
 :set expandtab
 :retab
 
-## Q: How to copy current file name or full path?
+## How to copy current file name or full path?
 
 % => current file name in register
 \# => alternate file name in register
 :echo expand('%:p')
 
-http://vim.wikia.com/wiki/Get_the_name_of_the_current_file
+<http://vim.wikia.com/wiki/Get_the_name_of_the_current_file>
 
-## Q: How to find tech info about the current file?
+## How to find tech info about the current file?
 
 g C-g
 
-## Q: How to format json?
+## How to format json?
 
 <Leader>= -> Neoformat
 :%!python -m json.tool
 
-## Q: How to move the cursor after the pasted text?
+## How to move the cursor after the pasted text?
 
 gp
 gP
 
-## Q: How to show unicode of current position?
+## How to show unicode of current position?
 
 ga
 
-## Q: How to build vim from source with clipboard and python3 support?
+## How to build vim from source with clipboard and python3 support?
 sudo yum remove vim
 sudo yum remove vim-minimal
 sudo yum install python36 python36-dev
@@ -715,7 +677,7 @@ make distclean
 make
 sudo make install
 
-## Q: How to move between code block?
+## How to move between code block?
 
 [{ -> start of {
 ]} -> end of }
@@ -724,7 +686,7 @@ sudo make install
 ][ -> end of function
 [[ -> start of function
 
-## Q: How to use tabs?
+## How to use tabs?
 
 :tabedit file1
 gt/gT => navigate
@@ -732,7 +694,7 @@ gt/gT => navigate
 :tabclose
 :tabonly
 
-## Q: How to use netrw?
+## How to use netrw?
 
 ```
 :Vex => Split netrw vertically.
@@ -758,14 +720,14 @@ let g:netrw_winsize = 25 "Set width to 25% of the page.
 
 See "How to split window" to check operations about how to close netrw panes.
 
-## Q: How to use filetype?
+## How to use filetype?
 
 :set ft=html
 :set filetype=javascript
 :set filetype=html
 :set filetype=css
 
-## Q: How to use fold?
+## How to use fold?
 
 zf'b - make fold to register b
 :5,16fo - make fold between 5 and 16
@@ -774,17 +736,9 @@ zo - open
 za - toggle
 zj/zk - move between folds
 
-## Q: How to use ctags?
+Use `:mkview` to store fold. Use `:loadview` to load them.
 
-C-]/C-w ]
-g] - list all match
-C-t/:tag
-:tag xx - return to upper stack point
-:tags - list stack
-:tp/:tn/:tf/:tl
-:ts
-
-## Q: How to use abbreviation?
+## How to use abbreviation?
 
 :ab => list
 :ab ;jls java.lang.String
@@ -793,41 +747,41 @@ C-t/:tag
 while in insert mode, just type ;jls then space, jls will expand to java.lang.String automatically. If you don't want to auto expand, just type C-v then space.
 in vimscript: iabbrev mymail herbage_h2h@sina.com
 
-## Q: How to jump to the start or end of a code block?
+## How to jump to the start or end of a code block?
 
 [{
 ]}
 [(
 ])
 
-## Q: How to echo the existing setting?
+## How to echo the existing setting?
 
 :set nocompatible?
 :set
 
-## Q: How to set encoding in vimrc?
+## How to set encoding in vimrc?
 
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8,gbk
 
-## Q: How to see if vim supports system clipboard?
+## How to see if vim supports system clipboard?
 
 vim --version | grep "clipboard"
 if the result has minus like '-clipboard', then vim doesn't support system clipboard.
 
-## Q: How to stop auto indent when paste from remote?
+## How to stop auto indent when paste from remote?
 
 :set paste
 after pasting, :set nopaste
 
-## Q: How to jump to specific row or column?
+## How to jump to specific row or column?
 
 :8 or 8G -> jump to row 8
 6| -> jump to column 6
 8G6| or :norm 8G6| -> jump to row 8 and column 6
 
-## Q: Hot to use registers?
+## Hot to use registers?
 
 ```
 normal mode: "0p
@@ -849,11 +803,11 @@ command mode: let @a='C-ra' | let @2=@_
 "/ => last search text
 ```
 
-## Q: How to save readonly file?
+## How to save readonly file?
 
 Use command :w !sudo tee %
 
-## Q: How to copy to system clipboard while in mac terminal mode which "+y register doesen't work?
+## How to copy to system clipboard while in mac terminal mode which "+y register doesen't work?
 
 add in .vimrc
 vnoremap <silent> <C-c> :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
@@ -861,42 +815,42 @@ vnoremap <silent> <C-c> :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=sys
 :w ! pbcopy
 open TextEdit and Command+v
 
-## Q: How to highlight the source file accoring to its grammer?
+## How to highlight the source file accoring to its grammer?
 
 :syntax on
 or
 :set syntax=lisp
 
-## Q: How to trim the special character '\r'?
+## How to trim the special character '\r'?
 
 :%s/\r//g
 
-## Q: How to trim the ending space?
+## How to trim the ending space?
 
 :%s/ *$//
 
-## Q: How to delete all empty lines?
+## How to delete all empty lines?
 
 :g/^$/d
 
-## Q: How to merge multiple empty lines into one?
+## How to merge multiple empty lines into one?
 
 :g/^$/,/./-j
 
-## Q: How to remove all lines that don't match "www.example.com"?
+## How to remove all lines that don't match "www.example.com"?
 
 :g!/www\.example\.com/d
 :v/www\.example\.com/d
 
-## Q: How to delete the current line and the following line at the same time?
+## How to delete the current line and the following line at the same time?
 
 2D or dj
 
-## Q: How to convert upper or lower case?
+## How to convert upper or lower case?
 
 guX to lowercase, gUX to uppercase.
 
-## Q: How to open multiple files?
+## How to open multiple files?
 
 + vim $file1
 + :split $file2/ :sp $file2 / :vs $file2, C-w C-w/C-w hjkl to switch between files.
@@ -904,11 +858,11 @@ guX to lowercase, gUX to uppercase.
 + Or vim -o $file1 $file2 ... to open multiple files at the same time.
 + Or :tabe $file2 to open, :tabn/:tabp to switch, gt/gT can also switch.
 
-## Q: How to see the current list of buffers?
+## How to see the current list of buffers?
 
- :ls
+:ls
 
-## Q: How to configure the indentation
+## How to configure the indentation
 
 + set autoindent
 + set tabstop=4
@@ -916,7 +870,7 @@ guX to lowercase, gUX to uppercase.
 + set shiftwidth=4
 + set expandtab
 
-## Q: How to quote the current word using single quote?
+## How to quote the current word using single quote?
 
 + ciw'C-r"'
 + ciw -> delete the current word
@@ -927,45 +881,45 @@ guX to lowercase, gUX to uppercase.
 + cw'C-rC-o"'
 + C-rC-o -> make the current word into the unname(") register so that dot(.) command can work on the other words.
 
-## Q: How to use gn motion command?
+## How to use gn motion command?
 
 - use regex to select.
 - use cgn or alike to edit text.
 - use . to repeat the changes to all matching text.
 
-## Q: How to edit in column mode?
+## How to edit in column mode?
 
 C-v enter column mode.
 Press I or A to insert some text.
 Esc then see all lines changed.
 
-## Q: How to input special character?
+## How to input special character?
 
 in insert mode, C-v u2192 to type special character such as →.
 
-## Q: How to move to the other end while in selection mode?
+## How to move to the other end while in selection mode?
 
 in visual mode, just press o.
 :help v_o.
 
-## Q: How to show line number?
+## How to show line number?
 
 :set number
 :set relativenumber
 
-## Q: How to count the occurence of some regex?
+## How to count the occurence of some regex?
 
 :%s/regex//gn
 
-## Q: How to auto complete a line?
+## How to auto complete a line?
 
 c-x c-l
 
-## Q: How to reference current word in command mode?
+## How to reference current word in command mode?
 
 /C-rC-w
 
-## Q: How to indent a brace block?
+## How to indent a brace block?
 
 :g/{/ .+1,/}/-1=
 + g/{pattern}/{command} -> for all lines that match pattern, execute command
@@ -973,26 +927,26 @@ c-x c-l
 + .+1 -> current line plus one line downward
 + /}/-1 -> one line upward of lines that match }
 
-## Q: How to exchange adacent char?
+## How to exchange adacent char?
 
 xp
 
-## Q: How to add shell command output in the current file?
+## How to add shell command output in the current file?
 
 :r!date
 :read !ls -al
 :read !grep vim history.txt
 
-## Q: The most important tips?
+## The most important tips?
 
 + repeat dot(.) command
 
-## Q: Any sites suggested to learn vim?
+## Any sites suggested to learn vim?
 
 http://vim.wikia.com/
 http://vimgolf.net/
 
-## Q: Operations about jumplist and changelist?
+## Operations about jumplist and changelist?
 
 ```
 C-o: older jump
@@ -1009,12 +963,12 @@ ma -> setting mark a
 [(, ]) -> jump to the beginning/end
 ```
 
-## Q: The sequence to clean a download page?
+## The sequence to clean a download page?
 
   A: 1. select all -> untabify
      1. :%s/ *$//
 
-## Q: Any other tips?
+## Any other tips?
 
 + /joe/e :: Set the cursor at the end of the match.
 + 3/joe :: Find 3rd joe.
@@ -1030,7 +984,7 @@ ma -> setting mark a
 + g; g, :: Move backward/forward in change list.
 + g_ :: Jump to the last non-blank character in the line.
 
-## Q: freq command in insert mode?
+## freq command in insert mode?
 
 - c-h => back delete a char
 - c-w => back detele a word
@@ -1045,7 +999,7 @@ ma -> setting mark a
 - c-x c-] => tag completion
 - c-x c-f => filename completion
 
-## Q: How to split window?
+## How to split window?
 
 :vsp => vertical split
 :sp => horizontal split
@@ -1058,21 +1012,21 @@ C-w | / _ => maximize split
 C-w x => swap window
 C-w w => cycle
 
-## Q: How to reload the current file?
+## How to reload the current file?
 
 :e
 set autoread
 
-## Q: How to check python3 support?
+## How to check python3 support?
 
 :echo has("python3")
 vim --version
 
-## Q: How to install python3 provider for neovim?
+## How to install python3 provider for neovim?
 
 pip3 install --user --upgrade neovim
 
-## Q: How to search and replace or regex?
+## How to search and replace or regex?
 
 ```
 :%s/foo/bar/g
@@ -1150,4 +1104,16 @@ zM  "Fold all.
 ]]  "Jump to the next heading.
 ]h  "Jump to current heading.
 ]u  "Jump to parent heading.
+```
+## How to start writing on a line at correct indentation?
+
+Use `S` to write.
+
+## How to navigate in insert mode?
+
+Use `shift + arrowkey` in insert mode to move quicky word by word.
+
+## How to reverse all lines in a file?
+
+`:g/^/m0
 ```
