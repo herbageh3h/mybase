@@ -1,5 +1,19 @@
 # Tmux
 
+## Quick Start
+
+```
+tmux -V
+tmux new -s hello
+tmux a -t hello
+tmux ls
+Ctrl-b d    "Detach.
+Ctrl-b [    "Copy mode. Press 'q' to quit copy mode.
+Ctrl-b x    "Close pane.
+Ctrl-b :swap-window -t 0    "swap current window with window 0.
+vim ~/.tmux.conf
+```
+
 ## Concepts
 
 tmux has a three-level hierarchy:
